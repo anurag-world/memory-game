@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { Button } from 'react-native-paper';
 import Card from './components/Card';
 
 interface CardType {
@@ -74,6 +75,13 @@ export default function Game(): React.JSX.Element {
     }
   };
 
+  const resetGame = () => {
+    setCards(generateShuffledCards());
+    setAttempts(0);
+    setMatches(0);
+    setSelectedCards([]);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.CardContainer}>
@@ -91,12 +99,25 @@ export default function Game(): React.JSX.Element {
           keyExtractor={(item) => item.id.toString()}
         />
       </View>
+
       <View style={styles.infoContainer}>
         <Text style={[styles.infoText, styles.infoTextPadding]}>
           Attempts: {attempts}
         </Text>
         <Text style={styles.infoText}>Matches: {matches}</Text>
       </View>
+
+      {matches === 8 && (
+        <View style={styles.resetButtonContainer}>
+          <Button
+            labelStyle={{ fontSize: 16 }}
+            mode="elevated"
+            onPress={resetGame}
+          >
+            Try Again
+          </Button>
+        </View>
+      )}
     </View>
   );
 }
@@ -108,11 +129,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   CardContainer: {
-    height: '60%',
+    height: '50%',
   },
   infoContainer: {
     marginTop: 16,
-    padding: 16,
+    padding: 20,
     borderRadius: 8,
     backgroundColor: '#fff',
   },
@@ -122,5 +143,8 @@ const styles = StyleSheet.create({
   },
   infoTextPadding: {
     paddingBottom: 8,
+  },
+  resetButtonContainer: {
+    marginTop: 28,
   },
 });
