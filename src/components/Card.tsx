@@ -4,12 +4,22 @@ import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 interface CardProps {
   letter: string;
   isFlipped: boolean;
+  isDisabled: boolean;
   onPress: () => void;
 }
 
-const Card = ({ letter, isFlipped, onPress }: CardProps): React.JSX.Element => {
+const Card = ({
+  letter,
+  isFlipped,
+  isDisabled,
+  onPress,
+}: CardProps): React.JSX.Element => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.card}>
+    <TouchableOpacity
+      onPress={onPress}
+      disabled={isDisabled}
+      style={[styles.card, styles.shadow, isDisabled && styles.disabledCard]}
+    >
       <View style={styles.innerCard}>
         <Text style={styles.cardText}>{isFlipped ? letter : '?'}</Text>
       </View>
@@ -26,6 +36,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#ddd',
     borderRadius: 5,
+  },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.0,
+
+    elevation: 1,
+  },
+  disabledCard: {
+    backgroundColor: '#f5f5f5',
   },
   innerCard: {
     justifyContent: 'center',
