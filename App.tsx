@@ -1,13 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  ImageBackground,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import Game from './src/Game';
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
-      <Game />
-    </View>
+      <ImageBackground
+        source={require('./assets/images/background.jpg')}
+        resizeMode="cover"
+        style={styles.bg}
+      >
+        <Game />
+      </ImageBackground>
+    </SafeAreaView>
   );
 }
 
@@ -15,7 +27,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+  },
+  bg: {
+    flex: 1,
   },
 });

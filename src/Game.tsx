@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import Card from './components/Card';
 
-const generateShuffledCards = () => {
+interface CardType {
+  id: number;
+  letter: string;
+  isFlipped: boolean;
+  isDisabled: boolean;
+}
+
+const generateShuffledCards = (): CardType[] => {
   const letters = 'AABBCCDDEEFFGGHH'.split('');
   for (let i = letters.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -12,6 +19,7 @@ const generateShuffledCards = () => {
     id: index,
     letter,
     isFlipped: false,
+    isDisabled: false,
   }));
 };
 
@@ -33,6 +41,13 @@ export default function Game(): React.JSX.Element {
 
       if (firstCard.letter === secondCard.letter) {
         setMatches((prev) => prev + 1);
+        setCards((prevCards) =>
+          prevCards.map((card, index) =>
+            index === firstIndex || index === secondIndex
+              ? { ...card, isDisabled: true }
+              : card
+          )
+        );
       } else {
         setTimeout(() => {
           setCards((prevCards) =>
@@ -60,7 +75,7 @@ export default function Game(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.CardContainer}>
         <FlatList
           data={cards}
@@ -69,6 +84,7 @@ export default function Game(): React.JSX.Element {
             <Card
               letter={item.letter}
               isFlipped={item.isFlipped}
+              isDisabled={item.isDisabled}
               onPress={() => handleCardPress(index)}
             />
           )}
@@ -76,10 +92,12 @@ export default function Game(): React.JSX.Element {
         />
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.infoText}>Attempts: {attempts}</Text>
+        <Text style={[styles.infoText, styles.infoTextPadding]}>
+          Attempts: {attempts}
+        </Text>
         <Text style={styles.infoText}>Matches: {matches}</Text>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -88,16 +106,21 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
   },
   CardContainer: {
     height: '60%',
   },
   infoContainer: {
     marginTop: 16,
+    padding: 16,
+    borderRadius: 8,
+    backgroundColor: '#fff',
   },
   infoText: {
     fontSize: 18,
     textAlign: 'center',
+  },
+  infoTextPadding: {
+    paddingBottom: 8,
   },
 });
