@@ -51,9 +51,7 @@ export default function GameScreen(): React.JSX.Element {
         setMatches((prev) => prev + 1);
         setCards((prevCards) =>
           prevCards.map((card, index) =>
-            index === firstIndex || index === secondIndex
-              ? { ...card, isDisabled: true }
-              : card
+            index === firstIndex || index === secondIndex ? { ...card, isDisabled: true } : card
           )
         );
       } else {
@@ -61,9 +59,7 @@ export default function GameScreen(): React.JSX.Element {
         setTimeout(() => {
           setCards((prevCards) =>
             prevCards.map((card, index) =>
-              index === firstIndex || index === secondIndex
-                ? { ...card, isFlipped: false }
-                : card
+              index === firstIndex || index === secondIndex ? { ...card, isFlipped: false } : card
             )
           );
         }, 1000);
@@ -76,9 +72,7 @@ export default function GameScreen(): React.JSX.Element {
   const handleCardPress = (index: number) => {
     if (selectedCards.length < 2 && !cards[index].isFlipped) {
       setCards((prevCards) =>
-        prevCards.map((card, i) =>
-          i === index ? { ...card, isFlipped: true } : card
-        )
+        prevCards.map((card, i) => (i === index ? { ...card, isFlipped: true } : card))
       );
       setSelectedCards([...selectedCards, index]);
     }
@@ -113,20 +107,14 @@ export default function GameScreen(): React.JSX.Element {
 
       {/* Display attempts and matches */}
       <View style={styles.infoContainer}>
-        <Text style={[styles.infoText, styles.infoTextPadding]}>
-          Attempts: {attempts}
-        </Text>
+        <Text style={[styles.infoText, styles.infoTextPadding]}>Attempts: {attempts}</Text>
         <Text style={styles.infoText}>Matches: {matches}</Text>
       </View>
 
       {/* Display reset button if all matches are found */}
       {matches === 8 && (
         <View style={styles.resetButtonContainer}>
-          <Button
-            labelStyle={{ fontSize: 16 }}
-            mode="elevated"
-            onPress={resetGame}
-          >
+          <Button labelStyle={{ fontSize: 16 }} mode="elevated" onPress={resetGame}>
             Try Again
           </Button>
         </View>

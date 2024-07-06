@@ -1,3 +1,4 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { ImageBackground, SafeAreaView, StyleSheet } from 'react-native';
 import GameScreen from './src/GameScreen';

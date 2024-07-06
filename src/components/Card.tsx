@@ -10,12 +10,7 @@ interface CardProps {
 }
 
 // Card component definition
-const Card = ({
-  letter,
-  isFlipped,
-  isDisabled,
-  onPress,
-}: CardProps): React.JSX.Element => {
+const Card = ({ letter, isFlipped, isDisabled, onPress }: CardProps): React.JSX.Element => {
   return (
     // TouchableOpacity to make the card clickable
     <TouchableOpacity
