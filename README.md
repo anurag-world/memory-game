@@ -13,6 +13,13 @@ This is a simple memory game built with React Native and TypeScript using Expo. 
 - Cards become non-clickable and change color when matched
 - Reset button appears after all cards have been matched
 
+## Screenshots
+
+<div>
+   <img src="assets/screenshots/Screenshot_01.png" width="200"/>
+   <img src="assets/screenshots/Screenshot_02.png" width="200"/>
+</div>
+
 ## Getting Started
 
 Follow these instructions to get a copy of the project up and running on your local machine.
