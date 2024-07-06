@@ -15,8 +15,8 @@ This is a simple memory game built with React Native and TypeScript using Expo. 
 
 ## Screenshots
 
-![Game Screenshot](assets/screenshots/Screenshot_01.png)
-![Game Screenshot](assets/screenshots/Screenshot_02.png)
+<img src="assets/screenshots/Screenshot_01.png" width="128"/>
+<img src="assets/screenshots/Screenshot_02.png" width="128"/>
 
 ## Getting Started
 
