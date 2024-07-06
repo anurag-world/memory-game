@@ -20,14 +20,15 @@ export default function Game(): React.JSX.Element {
   const [attempts, setAttempts] = useState(0);
   const [matches, setMatches] = useState(0);
   const [selectedCards, setSelectedCards] = useState<number[]>([]);
-  console.log('cards', JSON.stringify(cards, null, 4));
-  console.log('selectedCards', JSON.stringify(selectedCards, null, 4));
+  //console.log('cards', JSON.stringify(cards, null, 4));
+  //console.log('selectedCards', JSON.stringify(selectedCards, null, 4));
 
   useEffect(() => {
     if (selectedCards.length === 2) {
       const [firstIndex, secondIndex] = selectedCards;
       const firstCard = cards[firstIndex];
       const secondCard = cards[secondIndex];
+      //console.log(firstCard, secondCard);
       setAttempts((prev) => prev + 1);
 
       if (firstCard.letter === secondCard.letter) {
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   CardContainer: {
-    height: '50%',
+    height: '60%',
   },
   infoContainer: {
     marginTop: 16,
