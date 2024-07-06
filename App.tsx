@@ -1,11 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import {
-  ImageBackground,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { ImageBackground, SafeAreaView, StyleSheet } from 'react-native';
 import Game from './src/Game';
 
 export default function App() {
