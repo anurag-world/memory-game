@@ -1,17 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import { ImageBackground, SafeAreaView, StyleSheet } from 'react-native';
-import Game from './src/Game';
+import GameScreen from './src/GameScreen';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
+      {/* Add Background Image */}
       <ImageBackground
         source={require('./assets/images/background.jpg')}
         resizeMode="cover"
         style={styles.bg}
       >
-        <Game />
+        {/* Game Screen */}
+        <GameScreen />
       </ImageBackground>
     </SafeAreaView>
   );
